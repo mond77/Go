@@ -7,7 +7,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
-	"grpc/goods"
+	"goods"
 	"log"
 	"net"
 )

@@ -1,12 +1,16 @@
 package main
 
 import (
+	"bufio"
 	"context"
+	"goods"
+	"log"
+	"os"
+	"strings"
+
 	uuid "github.com/satori/go.uuid"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
-	"grpc/goods"
-	"log"
 )
 
 const (
@@ -27,9 +31,14 @@ func main() {
 	defer conn.Close()
 	//客户端绑定连接
 	client := goods.NewGoodsInfoClient(conn)
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := reader.ReadString('\n')
+	name = strings.TrimSuffix(name,"\n")
+	desc, _ := reader.ReadString('\n')
+	desc = strings.TrimSuffix(desc,"\n")
 	goodsNew := goods.Goods{
-		Name: "apple",
-		Desc: "i am an apple",
+		Name: name,
+		Desc: desc,
 	}
 
 	//添加一个商品
